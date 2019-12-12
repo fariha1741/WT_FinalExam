@@ -4,6 +4,33 @@
 	<title></title>
 </head>
 <body>
+	<script>
+function f1()
+{  var id= document.getElementById('id').value;
+ var pass= document.getElementById('upass').value;
+  var confirmpass = document.getElementById('cpass').value;
+ var name= document.getElementById('uname').value;
+  var email = document.getElementById('email').value;
+  var type = document.getElementById('type').value;
+ 
+ if( id=="" || pass=="" || confirmpass=="" || name=="" || email=="" || type=="")
+{ document.getElementById('regist').innerHTML="null submission";}
+else
+{
+var xhttp = new XMLHttpRequest();
+				xhttp.open("POST", "regist.php", true);
+				xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				xhttp.send('id='+id+'&pass='+pass+'&confirmpass='+cpass+'&name='+name+'&email='+email+'&type='+type+);
+			
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+					 	if(this.responseText=="true")
+					{window.location.href='ahome.php';}
+					 	else
+						{document.getElementById('regist').innerHTML = this.responseText;}							 
+					}};
+}}
+</script> 
 	<form>
 <fieldset>
 <legend> Registration </legend>
@@ -17,15 +44,11 @@
 <td> <input type= "Password" name= "pass" id="upass"> </td>
 </tr>
 <td>Confirm Password: </td>
-<td> <input type= "cPassword" name= "cpass" id="upass"> </td>
+<td> <input type= "Password" name= "cpass" id="upass"> </td>
 </tr>
 <tr>
 <td> Name: </td>
 <td> <input type= "text" name= "name" id="name"> </td>
-</tr>
-<tr>
-<td> Name: </td>
-<td> <input type= "text" name= "name" id="uname"> </td>
 </tr>
 <tr>
 <td>Email: </td>
